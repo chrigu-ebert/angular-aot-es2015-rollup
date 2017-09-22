@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "live-server www",
+    "start": "live-server dist",
     "explore": "source-map-explorer www/bundle.js",
     "test": "./aot-build.sh"
   },

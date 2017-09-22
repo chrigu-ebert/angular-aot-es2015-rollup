@@ -10,8 +10,8 @@ import sourcemaps from 'rollup-plugin-sourcemaps';
 // https://github.com/maxdavidson/rollup-plugin-sourcemaps/issues/33
 
 export default {
-  entry: 'build/aot-main.js', // entry point for the application
-  dest: 'www/bundle.js',
+  entry: 'build/app/aot-main.js', // entry point for the application
+  dest: 'dist/js/bundle.js',
   sourceMap: true,
   useStrict: false,
   format: 'iife', // ready-to-execute form, to put on a page

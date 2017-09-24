@@ -36,4 +36,4 @@ cp -R src/index.html dist
 rm -rf dist/**/*.map
 
 echo "AOT output size"
-ls -l dist/js/bundle.js*
+ls -lh dist/js/bundle.js*

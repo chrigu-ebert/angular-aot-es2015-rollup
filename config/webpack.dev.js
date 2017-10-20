@@ -1,7 +1,6 @@
-var webpackMerge = require('webpack-merge');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var commonConfig = require('./webpack.common.js');
-var helpers = require('./helpers');
+const webpackMerge = require('webpack-merge');
+const commonConfig = require('./webpack.common.js');
+const helpers = require('./helpers');
 
 module.exports = webpackMerge(commonConfig, {
     devtool: 'cheap-module-eval-source-map',
@@ -13,12 +12,23 @@ module.exports = webpackMerge(commonConfig, {
     },
 
     module:  {
-        exprContextCritical: false
+        exprContextCritical: false,
+
+        loaders: [
+            {
+                test: /\.ts$/,
+                loaders: [
+                    'awesome-typescript-loader?{configFileName: "tsconfig.dev.json"}',
+                    'angular2-template-loader'
+                ],
+                exclude: ['/\.(spec|e2e|d)\.ts$/']
+            }
+        ]
     },
 
-    plugins: [
-        new ExtractTextPlugin('[name].css')
-    ],
+    //plugins: [
+
+    //],
 
     devServer: {
         historyApiFallback: true,

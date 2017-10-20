@@ -1,8 +1,36 @@
-'use strict';
+const webpackMerge = require('webpack-merge');
+const commonConfig = require('./webpack.common.js');
+const helpers = require('./helpers');
+
+module.exports = webpackMerge(commonConfig, {
+
+    entry: {
+        'app': './src/main.aot.ts'
+    },
+
+    output: {
+        path: helpers.root('dist'),
+        filename: '[name].js'
+    },
+
+    module:  {
+        loaders: [
+            {
+                test: /\.ts$/,
+                loaders: [
+                    'awesome-typescript-loader?{configFileName: "tsconfig.json"}',
+                    'angular2-template-loader'
+                ],
+                exclude: ['/\.(spec|e2e|d)\.ts$/']
+            }
+        ]
+    }
+});
+
+/*'use strict';
 
 const path = require('path');
 const webpack = require('webpack');
-const ngtools = require('@ngtools/webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -74,9 +102,9 @@ module.exports = {
         })
 
     ].concat([
-        new ngtools.AotPlugin({
-            tsConfigPath: path.join(process.cwd(), 'tsconfig.json')
-        })
+        //new ngtools.AotPlugin({
+        //    tsConfigPath: path.join(process.cwd(), 'tsconfig.json')
+        //})
         // new ultimate.AotPlugin({
         //   tsConfig: path.join(process.cwd(), 'tsconfig.json')
         // })
@@ -90,19 +118,7 @@ module.exports = {
         extensions: ['.ts', '.js']
     },
 
-    devServer: {
-        contentBase: './src',
-        port: 9000,
-        inline: true,
-        historyApiFallback: true,
-        stats: 'errors-only',
-        watchOptions: {
-            aggregateTimeout: 300,
-            poll: 500
-        }
-    },
-
     stats: 'errors-only',
 
     devtool: 'source-map'
-};
+};*/
